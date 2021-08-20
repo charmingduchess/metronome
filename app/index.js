@@ -8,38 +8,43 @@ class Metro extends React.Component {
         //raw dom access
         this.regular = createRef();
         this.accent = createRef();
+        this.go = this.go.bind(this)
+        this.regularSRC = "/Users/ozzie/metronome/regular.wav"
+        this.accentSRC = "/Users/ozzie/metronome/accent.wav"
     }
-    render(){
-        const regular = "./regular.wav"
-        const accent = "./accent.wav"
+    go(){
         let i = 1;
         setInterval(()=>{
             if(i === 1){
                 //current is necessary for ref
-                this.accent.current.play()
+                  this.accent.current.play()
             }
             else if (i===2){
-                this.regular.current.play()
+                  this.regular.current.play()
             }
             else if (i ===3){
-                this.regular.current.play()
+                  this.regular.current.play()
             }
             else if(i === 4){
-                this.accent.current.play()
+                  this.accent.current.play()
             }
             else if ( i===5){
-                this.regular.current.play()
+                  this.regular.current.play()
             }
             else if (i ===6){
-                this.regular.current.play()
+                  this.regular.current.play()
                 i=0
             }
             i++
         }, 167)
+    }
+    render(){
+
         return (
             <div>
-                <audio ref ={this.regular} src = {regular}></audio>
-                <audio ref ={this.accent} src = {accent}></audio>
+                <button onClick={this.go}>play</button>
+                <audio ref ={this.regular} src = {this.regularSRC}></audio>
+                <audio ref ={this.accent} src = {this.accentSRC}></audio>
             </div>
         )
     }
