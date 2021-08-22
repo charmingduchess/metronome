@@ -9,7 +9,7 @@ import Button from "./Button";
 class Metro extends React.Component {
   constructor() {
     super();
-    this.state = { playing: false, interval: 0, meter: 6, BPM: "" };
+    this.state = { playing: false, interval: 0, meter: 4, BPM: "" };
     this.regular = createRef();
     this.accent = createRef();
     this.go = this.go.bind(this);
@@ -19,7 +19,7 @@ class Metro extends React.Component {
     this.changeMeter = this.changeMeter.bind(this);
   }
   playPause(playing) {
-    this.setState({ playing: !playing });
+    if(this.state.BPM !== "") this.setState({ playing: !playing });
     this.go(!playing, this.state.BPM, this.state.meter);
   }
   go(playing, BPM, meter) {
