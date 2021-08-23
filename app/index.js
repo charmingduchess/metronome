@@ -5,7 +5,7 @@ import meters from "./meters";
 import Tempo from "./Tempo";
 import Meter from "./Meter";
 import Play from "./Button";
-
+ 
 class Metro extends React.Component {
   constructor() {
     super();
