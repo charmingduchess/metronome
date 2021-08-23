@@ -58,8 +58,8 @@ class Metro extends React.Component {
     }
   }
   render() {
-    const regularSRC = "/clickLo.wav";
-    const accentSRC = "/clickHi.wav";
+    const regularSRC = "clickLo.wav";
+    const accentSRC = "clickHi.wav";
     return (
       <div id = "container">
         <audio ref={this.regular} src={regularSRC}></audio>

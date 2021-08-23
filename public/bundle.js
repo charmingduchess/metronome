@@ -497,8 +497,8 @@ var Metro = function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var regularSRC = "/clickLo.wav";
-      var accentSRC = "/clickHi.wav";
+      var regularSRC = "clickLo.wav";
+      var accentSRC = "clickHi.wav";
       return _react2.default.createElement(
         "div",
         { id: "container" },
