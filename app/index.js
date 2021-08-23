@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import meters from "./meters";
 import Tempo from "./Tempo";
 import Meter from "./Meter";
-import Button from "./Button";
+import Play from "./Button";
 
 class Metro extends React.Component {
   constructor() {
@@ -17,6 +17,7 @@ class Metro extends React.Component {
     this.meters = meters.map((f) => f.bind(this));
     this.changeBPM = this.changeBPM.bind(this);
     this.changeMeter = this.changeMeter.bind(this);
+    this.stopMetro = this.stopMetro.bind(this);
   }
   playPause(playing) {
     if(this.state.BPM !== "") this.setState({ playing: !playing });
@@ -27,7 +28,6 @@ class Metro extends React.Component {
     const meterFunc = this.meters[meter];
     let i = 1;
     if (!playing || BPM === "") {
-      console.log("clearing", this.state.interval);
       clearInterval(this.state.interval);
     } else if (playing) {
       const int = setInterval(() => {
@@ -35,24 +35,25 @@ class Metro extends React.Component {
         i === this.state.meter ? (i = 1) : i++;
       }, 60000 / BPM);
       this.setState({ interval: int });
-      //console.log(this.state.interval)
     }
   }
   changeMeter(meter) {
     this.setState({ meter: meter });
     if (this.state.playing) {
-      this.go(false, 0, 1);
+      this.stopMetro()
       this.go(true, this.state.BPM, meter);
     }
   }
+  stopMetro(){
+    this.go(false, 0, 1);
+  }
   changeBPM(BPM) {
-    //changes bpm, restarts metronome with new bpm or stops it if there is no input
     this.setState({ BPM: BPM });
     if (BPM === null) {
       this.setState({ playing: false });
       this.go(false, BPM);
     } else if (this.state.playing) {
-      this.go(false, 0, 1);
+      this.stopMetro()
       this.go(true, BPM, this.state.meter);
     }
   }
@@ -68,7 +69,7 @@ class Metro extends React.Component {
             currentMeter={this.state.meter}
             changeMeter={this.changeMeter}
           />
-          <Button playing={this.state.playing} playPause={this.playPause} />
+          <Play playing={this.state.playing} playPause={this.playPause} />
           <Tempo changeBPM={this.changeBPM} />
         
       </div>

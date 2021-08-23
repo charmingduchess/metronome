@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Button = (props)=>{
+const Play = (props)=>{
     return (<div id = "play"
     // onMouseEnter={() => {
     //     document.body.style.cursor = "pointer";
@@ -16,4 +16,4 @@ const Button = (props)=>{
         </div>)
 }
 
-export default Button
+export default Play
